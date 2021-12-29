@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Categories({ items }) {
-  const [activItem, setActivItem] = React.useState(null);
+  const [activeItem, setActivItem] = React.useState(null);
 
   const onSelectItem = (index) => {
     setActivItem(index);
@@ -10,13 +10,13 @@ function Categories({ items }) {
   return (
     <div className="categories">
       <ul>
-        <li className={activItem === null ? 'active' : ''} onClick={() => onSelectItem(null)}>
+        <li className={activeItem === null ? 'active' : ''} onClick={() => onSelectItem(null)}>
           Все
         </li>
         {items &&
           items.map((name, index) => (
             <li
-              className={activItem === index ? 'active' : ''}
+              className={activeItem === index ? 'active' : ''}
               onClick={() => onSelectItem(index)}
               key={`${name}_${index}`}>
               {name}
