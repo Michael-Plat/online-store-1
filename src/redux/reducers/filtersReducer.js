@@ -7,7 +7,7 @@ const filters = (state = initialState, action) => {
   if (action.type === 'SET_BY_SORT') {
     return {
       ...state,
-      sortBY: action.payload,
+      sortBy: action.payload,
     };
   }
   if (action.type === 'SET_CATEGORY') {
