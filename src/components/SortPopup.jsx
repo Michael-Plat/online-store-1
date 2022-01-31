@@ -1,17 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const SortPopup = React.memo(function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClickSortType }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
-  const [activeItem, setActivItem] = React.useState(0);
-
-  const activeName = items[activeItem].name;
+  const sortRef = React.useRef();
+  const activeName = items.find((obj) => obj.type === activeSortType).name;
 
   const onSelectItem = (index) => {
-    setActivItem(index);
+    if (onClickSortType) {
+      onClickSortType(index);
+    }
     setVisiblePopup(false);
   };
-
-  const sortRef = React.useRef();
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
@@ -51,8 +51,8 @@ const SortPopup = React.memo(function SortPopup({ items }) {
             {items &&
               items.map((obj, index) => (
                 <li
-                  className={activeItem === index ? 'active' : ''}
-                  onClick={() => onSelectItem(index)}
+                  onClick={() => onSelectItem(obj)}
+                  className={activeSortType === obj.type ? 'active' : ''}
                   key={`${obj.type}_${index}`}>
                   {obj.name}
                 </li>
@@ -63,5 +63,15 @@ const SortPopup = React.memo(function SortPopup({ items }) {
     </div>
   );
 });
+
+SortPopup.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickSortType: PropTypes.func.isRequired,
+};
+
+SortPopup.defaultProps = {
+  items: [],
+};
 
 export default SortPopup;

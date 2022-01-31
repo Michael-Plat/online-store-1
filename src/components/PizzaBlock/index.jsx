@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function PiazzaBlock({ name, imageUrl, price, types, sizes }) {
+function PizzaBlock({ name, imageUrl, price, types, sizes }) {
   const availableType = ['тонкое', 'традиционное'];
   const availableSize = [26, 30, 40];
 
@@ -75,7 +75,7 @@ function PiazzaBlock({ name, imageUrl, price, types, sizes }) {
   );
 }
 
-PiazzaBlock.propTypes = {
+PizzaBlock.propTypes = {
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   price: PropTypes.number,
@@ -83,11 +83,11 @@ PiazzaBlock.propTypes = {
   sizes: PropTypes.arrayOf(PropTypes.number),
 };
 
-PiazzaBlock.defaultProps = {
+PizzaBlock.defaultProps = {
   name: '----',
   price: 0,
   types: [],
   sizes: [],
 };
 
-export default PiazzaBlock;
+export default PizzaBlock;
